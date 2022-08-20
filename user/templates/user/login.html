@@ -1,0 +1,21 @@
+{% extends 'main.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <div class="form-group mt-5">
+                <!-- <legend>Login</legend> -->
+                <form method="post" style="display: block;">
+                    {% csrf_token %}
+                
+                    {{form | crispy }}
+                    <div class="form-group mt-3">
+                        <button class="btn btn-outline-info" type="submit">Login</button>
+                    </div>
+                </form>
+                </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'main.html' %}
+{% block content %}
+<div class="container mt-5">
+    <div class="row row-cols-1 row-cols-md-3 g-4 justify-content-center ">
+       <div class="col">
+        <div class="card h-100">
+          <img src="{{details.image.url}}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">{{details.card_title}}</h5>
+            <p class="card-text">{{details.description}}</p>
+          </div>
+          <div class="card-footer">
+            <small class="text-muted">Last updated {{details.updated | timesince}} ago</small>
+            <small class="text-muted">{{details.realtor}}</small>
+          </div>
+          {% if user.is_superuser %}
+          <div class="card-footer">
+            <div class="row">
+              <div class="col-md-6">
+                <button class="btn btn-outline-warning "><a href="{% url 'update_card' details.id %}" class="nav-link px-3">Edit</a></button>
+              </div>
+              <div class="col-md-6">
+                <button class="btn btn-danger "><a href="{% url 'delete' details.id %}" class="nav-link px-3">Delete</a></button>
+              </div>
+            </div>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+      </div>
+{% endblock content %}

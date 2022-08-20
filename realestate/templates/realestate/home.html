@@ -1,0 +1,45 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<!-- {% for ren in rent %}
+
+<div>
+    <h1><a href="">{{ ren.id}} --- {{ren.name}}</a></h1>
+</div>
+
+{% endfor %} -->
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-6">
+      {% if user.is_authenticated %}
+      <h4> Welcome {{user.username}}</h4>
+      {% endif %}
+    </div>
+    {% if user.is_superuser %}
+    <div class="col-md-6">
+      <button class="btn btn-outline-info"><a href="{% url 'create_card' %}" class="nav-link">Create listing</a></button>
+    </div>
+    {% endif %}
+  </div>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+       {% for discard in card %}
+       <a href="list_details/{{discard.id}}" class="nav-link">
+        <div class="col">
+          <div class="card h-100">
+            <img src="{{discard.image.url}}" alt class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">{{discard.card_title}}</h5>
+              <p class="card-text">{{discard.description}}</p>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted">Last updated {{discard.updated | timesince}} ago</small>
+            </div>
+          </div>
+        </div>
+       </a>
+       {% endfor %}
+      </div>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,47 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<table class="table"
+                   *ngIf="products && products.length">
+                <thead>
+                    <tr>
+                        <th>
+                            
+                        </th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Address</th>
+                        <th>Email</th>
+                        <th>Phone Number</th>
+                        <th>Sex</th>
+                        <th> </th>
+                        
+                    </tr>
+                </thead>
+                
+                {%  for customer in agent %}
+                <tbody>
+                    <tr *ngFor="let customer of customers">
+                        <td>
+                            <img *ngIf="product.imageUrl"
+                                 [src]="customer.imageUrl"
+                                 [title]="customer.firstName | uppercase"
+                                 [style.width.px]="imageWidth" 
+                                 [style.margin.px]="imageMargin">
+                        </td>
+                        <td><a >
+                            {{customer.agent_first_name | upper}}
+                            </a>
+                        </td>
+                        <td>{{ customer.agent_last_name }}</td>
+                        <td>{{ customer.address }}</td>
+                        <td>{{ customer.email }}</td>
+                        <td>
+                           {{customer.phone_number}}
+                       </td>
+                       <td>{{customer.sex}}</td>
+                    </tr>
+                </tbody>
+                {% endfor %}
+            </table>
+{% endblock %}
